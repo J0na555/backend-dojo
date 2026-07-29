@@ -2,23 +2,14 @@
 
 A personal backend-debugging practice environment for opencode.
 
-## Setup
+My goal with this project is to up my backend debugging game — one injected
+bug at a time. Every problem is a small, realistic app with exactly one flaw
+to find. No fluff, no toy scenarios. The more I grind through these, the
+faster I spot the real thing in production.
 
-1. `cd backend-dojo && git init && git add . && git commit -m "scaffold"`
-2. Run `/init` in opencode to generate the base `AGENTS.md`, then append
-   the contents of `AGENTS.md.append` into it (delete `AGENTS.md.append`
-   once merged).
-3. Create the orphan solutions branch:
-   ```
-   git checkout --orphan solutions
-   git rm -rf .
-   git commit --allow-empty -m "init solutions branch"
-   git checkout main
-   ```
-4. Verify the command directory name matches your opencode version
-   (`.opencode/command/` vs `.opencode/commands/` — check
-   `opencode.ai/docs/commands` and rename if needed).
-5. Requires `python3` on PATH. Node problems require `npm`.
+This is about building genuine instinct, not just getting green tests. I
+work every problem in my own editor with no agent help, and only reach for
+the reference fix when I'm properly stuck.
 
 ## Daily loop
 
