@@ -1,0 +1,12 @@
+{
+  "id": "1",
+  "slug": "001-todo-filter-bug",
+  "stack": "fastapi",
+  "category": "logic-data",
+  "difficulty": "easy",
+  "status": "queued",
+  "started_at": null,
+  "solved_at": null,
+  "time_spent_min": null,
+  "gave_up": false
+}

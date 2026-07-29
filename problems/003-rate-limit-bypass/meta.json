@@ -1,0 +1,12 @@
+{
+  "id": "3",
+  "slug": "003-rate-limit-bypass",
+  "stack": "node",
+  "category": "system-infra",
+  "difficulty": "medium",
+  "status": "queued",
+  "started_at": null,
+  "solved_at": null,
+  "time_spent_min": null,
+  "gave_up": false
+}
