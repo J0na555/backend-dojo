@@ -4,9 +4,9 @@
   "stack": "fastapi",
   "category": "logic-data",
   "difficulty": "easy",
-  "status": "queued",
-  "started_at": null,
-  "solved_at": null,
-  "time_spent_min": null,
+  "status": "solved",
+  "started_at": "2026-07-31T19:28:54.154295+00:00",
+  "solved_at": "2026-07-31T20:17:17.157126+00:00",
+  "time_spent_min": 48.4,
   "gave_up": false
 }

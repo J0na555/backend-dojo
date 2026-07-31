@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends
 from sqlalchemy import create_engine, Column, Integer, String, Boolean
 from sqlalchemy.orm import declarative_base, sessionmaker, Session
 from pydantic import BaseModel
+from typing import Optional
 
 DATABASE_URL = "sqlite:///./todos.db"
 engine = create_engine(DATABASE_URL, connect_args={"check_same_thread": False})
@@ -42,7 +43,7 @@ class TodoResponse(BaseModel):
 
 
 @app.get("/todos")
-def list_todos(completed: str = None, db: Session = Depends(get_db)):
+def list_todos(completed: Optional[bool] = None, db: Session = Depends(get_db)):
     query = db.query(Todo)
     if completed is not None:
         # BUG: compares string "true"/"false" against a boolean column.
