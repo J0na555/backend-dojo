@@ -4,9 +4,9 @@
   "stack": "django",
   "category": "concurrency",
   "difficulty": "medium",
-  "status": "queued",
-  "started_at": null,
-  "solved_at": null,
-  "time_spent_min": null,
+  "status": "solved",
+  "started_at": "2026-07-31T21:25:00.209759+00:00",
+  "solved_at": "2026-08-01T12:07:19.851662+00:00",
+  "time_spent_min": 882.3,
   "gave_up": false
 }
