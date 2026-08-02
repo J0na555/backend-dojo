@@ -61,7 +61,8 @@ Tag these with category `smell`.
   acceptable — it flips greens/reds at random and breaks the solve loop.
 - Tests must be isolated: reset shared state with fixtures or `beforeEach`,
   never by adding test-only hooks to production code.
-- Before committing, run `python3 scripts/lint_problems.py`; it must exit 0.
+- Before committing, run `python3 scripts/audit.py` (which also runs the
+  spoiler lint); it must exit 0.
 
 ## Folder + file contract
 
@@ -83,9 +84,15 @@ zero-padded id, containing:
     "started_at": null,
     "solved_at": null,
     "time_spent_min": null,
-    "gave_up": false
+    "gave_up": false,
+    "hints_used": 0,
+    "retro": false
   }
   ```
+- `hints.json` — three escalating hints, the only sanctioned place to point at
+  the bug. Level 1 names the surface area, level 2 the component/concept, level
+  3 the file/function to trace. Never name the exact fix or the exact line.
+  Kept out of README, comments, and chat.
 - `src/` — the app code, with the bug injected.
 - `tests/` — a runnable test suite (`pytest` for Python, `npm test` for
   Node) that fails on the current `src/` and passes once fixed.
@@ -95,5 +102,6 @@ zero-padded id, containing:
 After the problem folder is committed to `main` with the bug in place,
 switch to the orphan `solutions` branch, write the **pre-bug** (working)
 version of the same files at the same paths, commit, and switch back to
-`main`. Never leave `main` on the `solutions` branch. Never merge
-`solutions` into `main`.
+`main`. Include `meta.json` and `hints.json` on the solutions branch
+unchanged so `/reveal` doesn't drop them. Never leave `main` on the
+`solutions` branch. Never merge `solutions` into `main`.

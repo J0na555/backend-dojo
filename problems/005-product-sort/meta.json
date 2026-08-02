@@ -8,5 +8,7 @@
   "started_at": null,
   "solved_at": null,
   "time_spent_min": null,
-  "gave_up": false
+  "gave_up": false,
+  "hints_used": 0,
+  "retro": false
 }

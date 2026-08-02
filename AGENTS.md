@@ -10,6 +10,10 @@ be helped through it.
 - Never explain what the injected bug is, where it is, or why the tests fail, in
   any `README.md`, commit message, code comment, or chat response — unless the
   problem has `status: "solved"` or `status: "gave_up"` in its `meta.json`.
+- The only sanctioned place to hint at the bug is `problems/<slug>/hints.json`,
+  authored by dojo-gen at generation time (three escalating levels, never naming
+  the exact fix). It stays forbidden everywhere else.
+- Run `python3 scripts/audit.py` before generating a new problem; it must exit 0.
 - Never touch the `solutions` branch except through `scripts/reveal.py`.
 - Never mark a problem `solved` based on the user's claim — only
   `scripts/complete.py` re-running the real test suite may do that.

@@ -1,0 +1,7 @@
+{
+  "hints": [
+    "Look at a few prices in the response and compare two you'd expect to sort in a specific order — do they?",
+    "Ask what type the comparator receives and which comparison operator that type defaults to.",
+    "Open src/routes/products.js and study the price branch of the sort comparator."
+  ]
+}

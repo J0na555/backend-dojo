@@ -1,0 +1,7 @@
+{
+  "hints": [
+    "Read the transfer handler end to end and list its steps in order — especially where checks happen relative to writes.",
+    "Ask whether two requests could both pass the balance check before either one writes, and think about what the shared state looks like at that instant.",
+    "In src/main.py, trace where wallet balances are read and where they are written back, then decide what keeps the two from overlapping."
+  ]
+}

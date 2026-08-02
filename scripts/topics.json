@@ -1,0 +1,128 @@
+[
+  {
+    "stack": "fastapi",
+    "category": "logic-data",
+    "difficulty": "easy",
+    "topic": "Pydantic validation doesn't reject an invalid enum/choice",
+    "pattern": "wrong Pydantic validation accepting an invalid value"
+  },
+  {
+    "stack": "fastapi",
+    "category": "logic-data",
+    "difficulty": "medium",
+    "topic": "Optional query param gets silently ignored",
+    "pattern": "wrong default value / bind swallows the user's input"
+  },
+  {
+    "stack": "fastapi",
+    "category": "concurrency",
+    "difficulty": "medium",
+    "topic": "Shared in-memory cache loses updates under load",
+    "pattern": "non-atomic read-modify-write on a dependency-injected store"
+  },
+  {
+    "stack": "fastapi",
+    "category": "concurrency",
+    "difficulty": "hard",
+    "topic": "Two transfers both pass the balance check",
+    "pattern": "non-atomic balance check + update (lost update)"
+  },
+  {
+    "stack": "fastapi",
+    "category": "system-infra",
+    "difficulty": "easy",
+    "topic": "CORS blocks a legit origin",
+    "pattern": "misconfigured CORS origins"
+  },
+  {
+    "stack": "fastapi",
+    "category": "system-infra",
+    "difficulty": "medium",
+    "topic": "Env var load order leaves a default in production",
+    "pattern": "env var load order / precedence"
+  },
+  {
+    "stack": "django",
+    "category": "logic-data",
+    "difficulty": "easy",
+    "topic": "Lookup returns the wrong record",
+    "pattern": "filter() vs get() misuse"
+  },
+  {
+    "stack": "django",
+    "category": "logic-data",
+    "difficulty": "medium",
+    "topic": "List endpoint is slow under N+1 queries",
+    "pattern": "missing select_related / prefetch_related"
+  },
+  {
+    "stack": "django",
+    "category": "logic-data",
+    "difficulty": "hard",
+    "topic": "Schema is missing a column after a migration",
+    "pattern": "broken migration or missing data migration"
+  },
+  {
+    "stack": "django",
+    "category": "concurrency",
+    "difficulty": "medium",
+    "topic": "Concurrent reads oversell a limited resource",
+    "pattern": "non-atomic capacity check + increment"
+  },
+  {
+    "stack": "django",
+    "category": "system-infra",
+    "difficulty": "medium",
+    "topic": "A request slips past authentication",
+    "pattern": "middleware ordering bug"
+  },
+  {
+    "stack": "node",
+    "category": "logic-data",
+    "difficulty": "medium",
+    "topic": "Pagination skips or repeats rows",
+    "pattern": "off-by-one / boundary error in page slicing"
+  },
+  {
+    "stack": "node",
+    "category": "concurrency",
+    "difficulty": "medium",
+    "topic": "One slow request stalls the whole server",
+    "pattern": "event-loop blocking call"
+  },
+  {
+    "stack": "node",
+    "category": "system-infra",
+    "difficulty": "medium",
+    "topic": "Header spoofing resets the rate-limit budget",
+    "pattern": "trust proxy / IP header trust misconfig"
+  },
+  {
+    "stack": "node",
+    "category": "system-infra",
+    "difficulty": "medium",
+    "topic": "Cache invalidation misses on writes",
+    "pattern": "cache invalidation bug"
+  },
+  {
+    "stack": "any",
+    "category": "smell",
+    "difficulty": "easy",
+    "topic": "Flaky test from unsorted order in a response",
+    "pattern": "non-deterministic ordering makes a legit fix fail"
+  },
+  {
+    "stack": "any",
+    "category": "smell",
+    "difficulty": "medium",
+    "topic": "Timezone bug shifts timestamps by hours",
+    "pattern": "naive UTC vs local time mix"
+  },
+  {
+    "stack": "any",
+    "category": "smell",
+    "difficulty": "medium",
+    "topic": "Shared state leaks between test runs",
+    "pattern": "test isolation bug masquerading as an app bug"
+  }
+]

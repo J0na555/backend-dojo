@@ -44,10 +44,13 @@ def main():
     data["time_spent_min"] = round((now - started).total_seconds() / 60, 1)
     meta_path.write_text(json.dumps(data, indent=2))
 
+    journal = ROOT.parent / "journal" / f"{data['slug']}.md"
     print(
         f"\n\u2713 Solved! {folder.name} \u2014 {data['time_spent_min']} min. "
         f"Category: {data['category']}, difficulty: {data['difficulty']}."
     )
+    if not journal.exists():
+        print("Run /retro while it's fresh to capture what you learned.")
 
 
 if __name__ == "__main__":
