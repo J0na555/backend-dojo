@@ -3,6 +3,7 @@ const { describe, it, before, after } = require("node:test");
 const http = require("http");
 
 const app = require("../src/index");
+const rateLimiter = require("../src/middleware/rateLimiter");
 
 describe("Rate limiter", () => {
   let server;
@@ -54,6 +55,7 @@ describe("Rate limiter", () => {
   }
 
   it("allows up to 10 requests from the same IP", async () => {
+    rateLimiter.reset();
     for (let i = 0; i < 10; i++) {
       const resp = await fetch("/api/items");
       assert.equal(resp.status, 200, `request ${i + 1} should succeed`);
@@ -61,6 +63,7 @@ describe("Rate limiter", () => {
   });
 
   it("rejects the 11th request from the same IP", async () => {
+    rateLimiter.reset();
     // First exhaust the 10-request budget
     for (let i = 0; i < 10; i++) {
       await fetch("/api/items");
@@ -70,6 +73,7 @@ describe("Rate limiter", () => {
   });
 
   it("rate-limits based on real IP, not spoofed X-Forwarded-For", async () => {
+    rateLimiter.reset();
     // An attacker should NOT be able to bypass rate limiting by cycling
     // through different X-Forwarded-For values. Since all requests come
     // from the same real IP (127.0.0.1), the 11th should be blocked.

@@ -4,9 +4,9 @@
   "stack": "node",
   "category": "system-infra",
   "difficulty": "medium",
-  "status": "queued",
-  "started_at": null,
-  "solved_at": null,
-  "time_spent_min": null,
+  "status": "solved",
+  "started_at": "2026-08-01T19:46:21.713945+00:00",
+  "solved_at": "2026-08-02T18:47:34.634742+00:00",
+  "time_spent_min": 1381.2,
   "gave_up": false
 }
