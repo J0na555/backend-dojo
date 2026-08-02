@@ -5,8 +5,6 @@ const apiRoutes = require("./routes/api");
 const app = express();
 app.use(express.json());
 
-// app.set("trust proxy", false);
-
 // Apply rate limiter globally
 app.use(rateLimiter);
 

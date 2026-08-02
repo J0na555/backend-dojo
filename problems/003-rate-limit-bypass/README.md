@@ -1,3 +1,3 @@
-# Rate limiting can be bypassed by setting an arbitrary X-Forwarded-For header.
+# A client can keep making requests past the rate limit.
 
-The API trusts client-supplied IP headers, letting a single attacker exhaust the rate-limit budget of other users.
+Rate limiting is supposed to cap requests per client, but a determined client can get unlimited requests through.

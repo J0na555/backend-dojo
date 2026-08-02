@@ -46,8 +46,6 @@ class TodoResponse(BaseModel):
 def list_todos(completed: Optional[bool] = None, db: Session = Depends(get_db)):
     query = db.query(Todo)
     if completed is not None:
-        # BUG: compares string "true"/"false" against a boolean column.
-        # SQLite stores booleans as integers, so this never matches.
         query = query.filter(Todo.completed == completed)
     return query.all()
 

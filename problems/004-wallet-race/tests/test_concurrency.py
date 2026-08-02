@@ -85,29 +85,43 @@ def test_insufficient_balance_rejected():
 
 
 def test_concurrent_transfers_no_overspend():
-    _seed_db()
-    results = []
+    # The balance check and update aren't atomic, but a single racing pair
+    # only *sometimes* trips the race. Run it many times and assert the
+    # money-conservation invariant holds on EVERY attempt: a correct fix is
+    # green on every run, the race corrupts the invariant with overwhelming
+    # probability across the loop.
+    iterations = 50
 
-    def do_transfer(amount, to_id):
+    def do_transfer(to_id):
         c = TestClient(app)
-        resp = c.post("/transfer", json={
+        return c.post("/transfer", json={
             "from_wallet_id": 1,
             "to_wallet_id": to_id,
-            "amount": amount,
-        })
-        results.append(resp.status_code)
+            "amount": 60,
+        }).status_code
 
-    threads = [
-        threading.Thread(target=do_transfer, args=(60, 2)),
-        threading.Thread(target=do_transfer, args=(60, 3)),
-    ]
-    for t in threads:
-        t.start()
-    for t in threads:
-        t.join()
+    for attempt in range(iterations):
+        _seed_db()
+        results = []
+        threads = [
+            threading.Thread(target=lambda: results.append(do_transfer(2))),
+            threading.Thread(target=lambda: results.append(do_transfer(3))),
+        ]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
 
-    successes = [r for r in results if r == 200]
-    assert len(successes) <= 1, (
-        f"Expected at most 1 successful transfer, got {len(successes)}. "
-        "Race condition allowed overspend."
-    )
+        successes = sum(1 for r in results if r == 200)
+        assert successes <= 1, (
+            f"attempt {attempt + 1}: {successes} transfers of 60 succeeded "
+            "from a balance of 100 — overspend (lost update)."
+        )
+
+        db = TEST_SESSION()
+        total = sum(w.balance for w in db.query(Wallet).all())
+        db.close()
+        assert total == 100, (
+            f"attempt {attempt + 1}: money not conserved, total balance "
+            f"{total} != 100"
+        )

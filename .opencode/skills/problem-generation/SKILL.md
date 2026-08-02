@@ -47,6 +47,21 @@ Tag these with category `smell`.
 - No comments, naming, or commit messages that hint at the fix. The bug
   should look like an honest mistake a competent developer made, not a
   puzzle with a wink in it.
+- The source must never contain comments or docstrings that name the bug —
+  no `# BUG:`, no `TODO`, no hinting docstrings. The README states only the
+  observable symptom, never the mechanism, location, or category.
+
+## Deterministic, isolated tests
+
+- Concurrency tests must not depend on thread scheduling luck. Either inject
+  a deterministic sync point (barrier/injected lock) that still works when
+  the fix adds its own locking, or run the racing operation many times and
+  assert an invariant that holds on every single attempt. A bare
+  `threading` + real-DB race that is expected to "sometimes fail" is not
+  acceptable — it flips greens/reds at random and breaks the solve loop.
+- Tests must be isolated: reset shared state with fixtures or `beforeEach`,
+  never by adding test-only hooks to production code.
+- Before committing, run `python3 scripts/lint_problems.py`; it must exit 0.
 
 ## Folder + file contract
 

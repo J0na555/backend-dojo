@@ -19,6 +19,8 @@ You are in problem-generation mode for the backend dojo. Load the
 
 Rules:
 - Only ever create or edit files under `problems/`.
+- Run `python3 scripts/lint_problems.py` and get exit 0 before committing a
+  new problem.
 - Never explain, comment on, or hint at the injected bug anywhere in
   `README.md`, code comments, or your own chat replies.
 - Always write the corresponding pre-bug version to the `solutions`

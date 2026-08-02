@@ -71,12 +71,7 @@ def create_wallet(owner: str, db: Session = Depends(get_db)):
 
 @app.post("/transfer")
 def transfer(req: TransferRequest, db: Session = Depends(get_db)):
-    """Transfer money between wallets.
-
-    BUG: The balance check and the balance update are not atomic.
-    With concurrent requests, two transfers can both pass the check
-    even though the combined amount exceeds the available balance.
-    """
+    """Transfer money between wallets."""
     if req.amount <= 0:
         raise HTTPException(status_code=400, detail="Amount must be positive")
 
@@ -89,11 +84,9 @@ def transfer(req: TransferRequest, db: Session = Depends(get_db)):
     if not source or not target:
         raise HTTPException(status_code=404, detail="Wallet not found")
 
-    # Race window: both requests read the same balance here
     if source.balance < req.amount:
         raise HTTPException(status_code=400, detail="Insufficient balance")
 
-    # Both requests then proceed to update based on the stale balance
     source.balance -= req.amount
     target.balance += req.amount
 

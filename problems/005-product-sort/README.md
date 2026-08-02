@@ -1,3 +1,3 @@
-# Sorting products by price places \$9.99 after \$100.00.
+# Sorting products by price places $9.99 after $100.00.
 
-The products endpoint sorts by string comparison instead of numeric comparison, so lexicographic ordering scrambles the price-sorted results.
+The price-sorted list comes back in the wrong order.
