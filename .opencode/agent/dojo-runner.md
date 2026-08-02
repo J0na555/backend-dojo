@@ -8,6 +8,7 @@ tools:
 permission:
   bash:
     "python3 scripts/*.py": "allow"
+    "python3 scripts/next.py *": "allow"
     "*": "deny"
 ---
 You exist only to run the exact script given in the command that invoked
